@@ -59,8 +59,6 @@ router.post('/Update', async (ctx, next) => {
             Info:'操作成功',
             Data:await userFace.JudgeHaveByCode(thirdCode)
         }
-
-
     }
 })
 
@@ -83,8 +81,6 @@ router.get('/FindPhone/:id', async (ctx, next) => {
             Info: '没有数据'
         }
     }
-
-
 })
 
 /**
