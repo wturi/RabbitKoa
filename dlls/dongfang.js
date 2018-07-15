@@ -51,7 +51,7 @@ function GetCommunityInfo(doorId, obj) {
         obj.Latitude = data.latitude;
         obj.Longitude = data.longitude;
         obj.locality = data.locality;
-        obj.address=data.address
+        obj.address = data.address
         try {
             GetWechatUserInfo(obj, data.communityId);
         } catch (error) {
@@ -142,7 +142,7 @@ function GetWechatUserInfo(obj, communityId) {
                 address: obj.address,
                 district: obj.locality,
                 town: obj.locality,
-                communityName:obj.communityName
+                communityName: obj.communityName
             }
 
             let openInfo = {
@@ -151,7 +151,7 @@ function GetWechatUserInfo(obj, communityId) {
                 door_status: true
             }
 
-            jingan.UploadJingAn(userInfo, deviceInfo, openInfo,communityId)
+            jingan.UploadJingAn(userInfo, deviceInfo, openInfo, communityId)
         })
     })
 }
@@ -208,20 +208,24 @@ function JudgeFirstName(obj) {
  * @param {OBJ} obj 
  */
 function Push(url, obj) {
-    var options = {
-        headers: { "content-type": "application/json" },
-        url: url,
-        method: 'POST',
-        json: true,
-        body: obj
-    };
-    function callback(error, response, data) {
-        //console.log('dongfang:'+url+'----'+JSON.stringify(options)+JSON.stringify(error) + JSON.stringify(response));
-        if (!error && response.statusCode == 200) {
-            //console.log('dongfang:'+url+'----'+ JSON.stringify(response));
+    try {
+        var options = {
+            headers: { "content-type": "application/json" },
+            url: url,
+            method: 'POST',
+            json: true,
+            body: obj
+        };
+        function callback(error, response, data) {
+            //console.log('dongfang:'+url+'----'+JSON.stringify(options)+JSON.stringify(error) + JSON.stringify(response));
+            if (!error && response.statusCode == 200) {
+                //console.log('dongfang:'+url+'----'+ JSON.stringify(response));
+            }
         }
+        request(options, callback);
+    } catch (error) {
+        console.error(error);
     }
-    request(options, callback);
 }
 
 module.exports.GetCommunityInfo = GetCommunityInfo;
