@@ -224,7 +224,7 @@ function Push(url, obj) {
         }
         request(options, callback);
     } catch (error) {
-        console.error(error);
+        //console.error(error);
     }
 }
 
